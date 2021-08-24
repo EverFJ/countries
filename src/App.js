@@ -15,6 +15,7 @@ class App extends React.Component {
       population: "",
       region: "",
       input: "",
+      inputIsCorrect: true,
     };
   }
 
@@ -29,6 +30,9 @@ class App extends React.Component {
           population: data[0].population,
           region: data[0].region,
         });
+      })
+      .catch((err) => {
+        console.log(err);
       });
   };
 
@@ -47,7 +51,12 @@ class App extends React.Component {
           flag: data[0].flag,
           population: data[0].population,
           region: data[0].region,
+          inputIsCorrect: true,
         });
+      })
+      .catch((err) => {
+        console.log(err);
+        this.setState({ inputIsCorrect: false });
       });
   };
 
@@ -55,7 +64,6 @@ class App extends React.Component {
     fetch("https://restcountries.eu/rest/v2/name/france")
       .then((res) => res.json())
       .then((data) => {
-        // console.log("data[0]", data[0]);
         this.setState({
           name: data[0].name,
           capital: data[0].capital,
@@ -67,7 +75,6 @@ class App extends React.Component {
   };
 
   render() {
-    // console.log("input", this.state.input);
     return (
       <>
         <h1 className="text-center mt-1">Countries</h1>
@@ -89,15 +96,21 @@ class App extends React.Component {
         </div>
 
         {/* CARD OUTPUT */}
-        <div className="text-center">
-          <Card
-            name={this.state.name}
-            capital={this.state.capital}
-            flag={this.state.flag}
-            population={this.state.population}
-            region={this.state.region}
-          />
-        </div>
+        {this.state.inputIsCorrect ? (
+          <div className="text-center">
+            <Card
+              name={this.state.name}
+              capital={this.state.capital}
+              flag={this.state.flag}
+              population={this.state.population}
+              region={this.state.region}
+            />
+          </div>
+        ) : (
+          <p className="text-center mt-3">
+            We did'nt find the country you were looking for (search in english)
+          </p>
+        )}
       </>
     );
   }

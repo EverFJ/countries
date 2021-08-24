@@ -6,7 +6,7 @@ class Input extends React.Component {
       <>
         <form className="form-group text-center">
           <label className="form-label">
-            Enter country you're searching for
+            Enter country you're searching for :
           </label>
           <div className="row justify-content-center">
             <div className="col-4">
@@ -20,8 +20,9 @@ class Input extends React.Component {
           </div>
           <button
             className="btn btn-primary mt-1"
+            type="button"
             onClick={() => {
-              console.log("input value", this.props.value);
+              //   console.log("input value", this.props.value);
               this.props.onClick(this.props.value);
             }}
           >
