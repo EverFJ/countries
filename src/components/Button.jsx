@@ -5,7 +5,7 @@ class Button extends React.Component {
     return (
       <>
         <button
-          className="btn btn-primary border"
+          className="btn btn-primary border m-1"
           onClick={() => {
             this.props.onClick(this.props.children.toLowerCase());
           }}

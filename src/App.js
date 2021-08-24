@@ -1,5 +1,6 @@
 import React from "react";
 import Button from "./components/Button";
+import Card from "./components/Card";
 import "bootstrap/dist/css/bootstrap.min.css";
 
 class App extends React.Component {
@@ -46,15 +47,21 @@ class App extends React.Component {
   render() {
     return (
       <>
-        <h1>Countries</h1>
-        <Button onClick={this.getCountry}>France</Button>
-        <Button onClick={this.getCountry}>Brazil</Button>
-        <Button onClick={this.getCountry}>Croatia</Button>
-        <p>name : {this.state.name}</p>
-        <p>capital : {this.state.capital}</p>
-        <p>flag : {this.state.flag}</p>
-        <p>population : {this.state.population}</p>
-        <p>region : {this.state.region}</p>
+        <h1 className="text-center">Countries</h1>
+        <div className="text-center mt-3">
+          <Button onClick={this.getCountry}>France</Button>
+          <Button onClick={this.getCountry}>Brazil</Button>
+          <Button onClick={this.getCountry}>Croatia</Button>
+        </div>
+        <div className="text-center">
+          <Card
+            name={this.state.name}
+            capital={this.state.capital}
+            flag={this.state.flag}
+            population={this.state.population}
+            region={this.state.region}
+          />
+        </div>
       </>
     );
   }
